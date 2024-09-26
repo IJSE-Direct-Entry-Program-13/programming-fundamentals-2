@@ -1,13 +1,13 @@
 void main() {
-    int x = 0, y = 5, w = 5;
+    int x = 0, w = 5, y = 5;
     while (true) {
         x++;
-        System.out.print(STR."* \{x < y ? "" : System.lineSeparator()}");
-        if (x == y){
+        System.out.print(STR."* \{x < w ? "" : System.lineSeparator()}");
+        if (x == w){
             x = 0;
-            y--;
+            w--;
         }
-        if (y == 0) y = --w;
-        if (w == 1) return;
+        if (w == 0) w = --y;
+        if (y == 1) System.exit(0);
     }
 }
