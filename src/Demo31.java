@@ -34,8 +34,10 @@ void main() {
     int i = 0;
     String subjectDetails = "";
     int totalMarks = 0;
+
     int maxMarks = 0;
     String maxMarksSubject = "";
+
     int minMarks = 100;
     String minMarksSubject = "";
 
