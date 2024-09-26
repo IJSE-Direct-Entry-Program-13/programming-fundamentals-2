@@ -7,6 +7,8 @@ void main() {
     final var BLUE = "\u001B[34;1m";
     final var YELLOW = "\u001B[33;1m";
     final var RESET = "\u001B[0m";
+    final var BOLD = "\u001B[1m";
+    final var UNDERLINE = "\u001B[4m";
 
     String name = "";
     boolean invalidName = true;
@@ -31,6 +33,11 @@ void main() {
 
     int i = 0;
     String subjectDetails = "";
+    int totalMarks = 0;
+    int maxMarks = 0;
+    String maxMarksSubject = "";
+    int minMarks = 100;
+    String minMarksSubject = "";
 
     while (i++ < subjectCount) {
 
@@ -62,11 +69,45 @@ void main() {
                 System.out.println(STR."\{RED}Invalid marks for the \{subject}\{RESET}");
         }
 
-        subjectDetails += STR."\{subject}: \{marks}\{System.lineSeparator()}";
+        String grade;
+        if (marks >= 75) grade = STR."\{BLUE}A\{RESET}";
+        else if (marks >= 65) grade = STR."\{GREEN}B\{RESET}";
+        else if (marks >= 55) grade = STR."\{YELLOW}C\{RESET}";
+        else if (marks >= 45) grade = "S";
+        else grade = STR."\{RED}F\{RESET}";
+
+        subjectDetails += STR."\{subject}-\{marks} (\{grade})\{System.lineSeparator()}";
+        totalMarks += marks;
+
+        if (marks >= maxMarks) {
+            maxMarks = marks;
+            maxMarksSubject = subject;
+        }
+
+        if (marks <= minMarks){
+            minMarks = marks;
+            minMarksSubject = subject;
+        }
     }
 
+    double avgMarks = totalMarks / (subjectCount * 1.);
+    String grade;
+    if (avgMarks >= 75) grade = STR."\{BLUE}A\{RESET}";
+    else if (avgMarks >= 65) grade = STR."\{GREEN}B\{RESET}";
+    else if (avgMarks >= 55) grade = STR."\{YELLOW}C\{YELLOW}";
+    else if (avgMarks >= 45) grade = "S";
+    else grade = STR."\{RED}F\{RESET}";
+
     System.out.println(STR."""
-            NAME: \{name}
+
+            \{BOLD}NAME: \{UNDERLINE}\{name}\{RESET}
             \{subjectDetails}
+            \{BOLD}TOTAL MARKS: \{totalMarks}
+            AVG. MARKS: \{avgMarks}
+            GRADE: \{grade}\{RESET}
+
+            Max Marks: \{maxMarksSubject} - \{maxMarks}
+            Min Marks: \{minMarksSubject} - \{minMarks}
+
             """);
 }
