@@ -10,7 +10,7 @@ void main() {
     if (nic.isBlank()) {
         System.out.println(STR."\{COLOR_RED}NIC can't be empty\{RESET}");
     } else {
-        boolean newNic = false;
+        boolean newNic;
         if ((newNic = (nic.length() == 12)) || (nic.length() == 10 && nic.charAt(9) == 'V')){
             System.out.println(newNic ? "New NIC": "Old NIC");
         }else{
