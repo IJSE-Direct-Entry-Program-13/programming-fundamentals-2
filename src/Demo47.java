@@ -28,17 +28,24 @@ void main() {
     System.out.println(STR."\{BLUE}\{message}\{RESET}");
 
     for (int i = 0, x = 0, y = 0; i < (size + 1) * size; i++, x++) {
-        if (x != size) {
-            if (y == x || y == 8 - x ||
-                    (x == 0 || x == (size - 1)) && (y == 2 || y == (size - 3)) ||
-                    (x == 2 || x == (size - 3)) && (y == 0 || y == (size - 1))) {
-                System.out.print("* ");
-            } else {
-                System.out.print(". ");
-            }
-        } else {
-            System.out.println();
-        }
+//        if (x != size) {
+//            if (y == x || y == 8 - x ||
+//                    (x == 0 || x == (size - 1)) && (y == 2 || y == (size - 3)) ||
+//                    (x == 2 || x == (size - 3)) && (y == 0 || y == (size - 1))) {
+//                System.out.print("* ");
+//            } else {
+//                System.out.print(". ");
+//            }
+//        } else {
+//            System.out.println();
+//        }
+        System.out.print(x != size ?
+                (y == x || y == (size - 1) - x ||
+                        (x == 0 || x == (size - 1)) && (y == 2 || y == (size - 3)) ||
+                        (x == 2 || x == (size - 3)) && (y == 0 || y == (size - 1))) ?
+                        "\u001b[41m\u001b[30m * \u001b[0m" :
+                        "\u001b[47m . \u001b[0m"
+                : System.lineSeparator());
         if (x == size) {
             y++;
             x = -1;
